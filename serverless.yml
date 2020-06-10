@@ -1,4 +1,4 @@
-service: kahwin-checklist
+service: budget-tracker-service
 
 provider:
   name: aws
@@ -8,14 +8,12 @@ provider:
   environment: ${file(./config/${self:custom.stage}.env.json)}
 
 plugins:
-  - serverless-offline-sns
-  - serverless-offline-scheduler
   - serverless-offline
 
 functions:
   rest:
     handler: main.handler
-    description: Contain all application route logic 
+    description: Contain all endpoint for budget tracker  
     events: 
       - http: 
           path: /
