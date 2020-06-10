@@ -1,0 +1,9 @@
+# package directories
+node_modules
+jspm_packages
+config/dev.env.json
+config/prod.env.json
+config/staging.env.json
+
+# Serverless directories
+.serverless

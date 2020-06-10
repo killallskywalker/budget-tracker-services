@@ -1,0 +1,32 @@
+service: kahwin-checklist
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: ap-southeast-1
+  environment: ${file(./config/${self:custom.stage}.env.json)}
+
+plugins:
+  - serverless-offline-sns
+  - serverless-offline-scheduler
+  - serverless-offline
+
+functions:
+  rest:
+    handler: main.handler
+    description: Contain all application route logic 
+    events: 
+      - http: 
+          path: /
+          method: ANY
+          cors: true
+      - http: 
+          path: /{proxy+}
+          method: ANY
+          cors: true
+
+custom:
+  serverless-offline:
+    httpPort: 4000
+  stage: ${opt:stage, self:provider.stage}
