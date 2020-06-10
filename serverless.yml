@@ -1,3 +1,5 @@
+org: killallskywalker
+app: budget-tracker-services
 service: budget-tracker-service
 
 provider:
