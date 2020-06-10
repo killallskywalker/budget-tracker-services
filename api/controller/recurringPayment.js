@@ -4,6 +4,13 @@ const dbConnection = require('../../connection')
 const RecurringPayment = require('../schema/recurringPayment')
 const { addRecurringPayment,validate } = require('../validation/validator');
 
+/*
+ * This is a services to add and delete recurring payment . 
+ * If you want to add recurring payment
+ * need to set recurring payment first , before add record for income / expense . 
+ * If you already add record , the recurring will be calculated for the next month .
+ */
+
 router.post('/' , addRecurringPayment() , validate , async (req,res) => {
     try{
         await dbConnection.connectToDatabase();

@@ -5,6 +5,10 @@ const Transaction = require('../schema/transaction')
 const RecurringPayment = require('../schema/recurringPayment')
 const { addTransactionRecord,searchRecord,validate } = require('../validation/validator');
 
+/*
+ * This is a services to add and delete record of expenses and income . 
+ */
+
 router.post('/' , addTransactionRecord() , validate , async (req,res) => {
 try{
 
@@ -23,11 +27,10 @@ try{
     })
     transaction[0].save();
     }else{
-      const recurringPaymentList = await RecurringPayment.findAllRecurringPayment({});
-      console.log(recurringPaymentList[0]);
+      let recurringPaymentList = await RecurringPayment.findAllRecurringPayment({});
       const newTransaction = new Transaction({
         month:new Date(month).toISOString(),
-        recurringPayment:recurringPaymentList,
+        recurringPayment:(recurringPaymentList ? recurringPaymentLis[0] : null),
         transaction:{
           category:req.body.category,
           memo:req.body.memo,

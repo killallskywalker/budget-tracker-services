@@ -1,5 +1,11 @@
 const { body, validationResult } = require('express-validator')
 
+/*
+ * Middlewares that wraps validator.js  and sanitize function . 
+ * Use to ensure every input are validated and returning an error 
+ * if the input not pass the validation .
+ */
+
 const addTransactionRecord = () => {
   return [
     body('date').notEmpty().withMessage('Date required!').isISO8601().withMessage('Incorrect month format!'),
